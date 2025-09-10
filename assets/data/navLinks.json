@@ -1,0 +1,45 @@
+{
+  "Links": [
+    {
+      "navLinks": [
+        { "name": "Home", "href": "#hero", "icon": "fa-solid fa-house" },
+        {
+          "name": "About",
+          "href": "#about",
+          "icon": "fa-solid fa-address-card"
+        },
+        { "name": "Projects", "href": "#projects", "icon": "fa-solid fa-code" },
+        { "name": "Blogs", "href": "#blog", "icon": "fa-solid fa-blog" },
+        {
+          "name": "Contact",
+          "href": "#contact",
+          "icon": "fa-solid fa-address-book"
+        }
+      ]
+    },
+    {
+      "socialLinks": [
+        {
+          "name": "Email",
+          "icon": "fa-solid fa-at",
+          "href": "mailto:mohamed.jalloh91@gmail.com"
+        },
+        {
+          "name": "LinkedIn",
+          "icon": "fa-brands fa-linkedin-in",
+          "href": "https://www.linkedin.com/in/abooabdillaahmbj/"
+        },
+        {
+          "name": "GitHub",
+          "icon": "fa-brands fa-github",
+          "href": "https://github.com/OneCode-AA"
+        },
+        {
+          "name": "Codepen",
+          "icon": "fa-brands fa-codepen",
+          "href": "https://codepen.io/thetwomigrations"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "jobs": [
+    {
+      "company": "The Two Migrations",
+      "companyAlias": "",
+      "title": "Full-Stack Developer",
+      "location": "Saint Paul, MN",
+      "duration": [
+        {
+          "startDate": "September 2024",
+          "endDate": "",
+          "stillEmployed?": true
+        }
+      ],
+      "tasks": [
+        {
+          "task1": "Responsible for company site and database data, and more",
+          "task2": "",
+          "task3": "",
+          "task4": "",
+          "task5": "",
+          "task6": ""
+        }
+      ]
+    },
+    {
+      "company": "New Vision Foundation",
+      "companyAlias": "NVF",
+      "title": "Coding Instructor Intern",
+      "location": "Saint Paul, MN",
+      "duration": [
+        {
+          "startDate": "April 2025",
+          "endDate": "May 2025",
+          "stillEmployed?": false
+        }
+      ],
+      "tasks": [
+        {
+          "task1": "Teach elementary students how to code",
+          "task2": "Teach programming languages like JavaScript",
+          "task3": "Assist with equipment setup",
+          "task4": "Assist students with classwork and assignments",
+          "task5": "Review and prepare lessons for class",
+          "task6": ""
+        }
+      ]
+    },
+    {
+      "company": "Upwork",
+      "companyAlias": "Upwork",
+      "title": "Frontend Developer Freelancer",
+      "location": "Remote",
+      "duration": [
+        {
+          "startDate": "March 2024",
+          "endDate": "April 2025",
+          "stillEmployed?": false
+        }
+      ],
+      "tasks": [
+        {
+          "task1": "Created requested projects for clients",
+          "task2": "Developed static web pages, landing pages, and portfolio sites",
+          "task3": "",
+          "task4": "",
+          "task5": "",
+          "task6": ""
+        }
+      ]
+    }
+  ]
+}

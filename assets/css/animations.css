@@ -1,0 +1,197 @@
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* NAV / MENU panels */
+@keyframes navSlideDown {
+    from {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes actionNavSlide {
+    from {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes actionMenuSlideIn {
+    from {
+        transform: translate3d(-100%, 0, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+/* Optional hooks */
+/* .nav.opened {
+    animation: navSlideDown 500ms cubic-bezier(.4, .2, .2, 1) both;
+} */
+
+.nav-panel.from-right.opened {
+    animation: actionNavSlide 450ms cubic-bezier(.4, .2, .2, 1) both;
+}
+
+.nav-panel.from-left.opened {
+    animation: actionMenuSlideIn 450ms cubic-bezier(.4, .2, .2, 1) both;
+}
+
+/* HAMBURGER keyframes (used by .menuBtn.opened in style.css) */
+@keyframes first {
+    from {
+        transform: translate3d(50px, 50px, 0) rotate(45deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0) rotate(45deg);
+        opacity: 1;
+    }
+}
+
+@keyframes second {
+    from {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+}
+
+@keyframes third {
+    from {
+        transform: translate3d(50px, -50px, 0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0) rotate(-45deg);
+        opacity: 1;
+    }
+}
+
+/* Reveal-on-scroll (used by scroll-animations.js) */
+@media (prefers-reduced-motion: no-preference) {
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .reveal[data-reveal-delay="1"] {
+        transition-delay: 80ms;
+    }
+
+    .reveal[data-reveal-delay="2"] {
+        transition-delay: 160ms;
+    }
+
+    .reveal[data-reveal-delay="3"] {
+        transition-delay: 240ms;
+    }
+}
+
+/* Subtle hero entrance */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero .introCard {
+    animation: fadeSlideUp 0.6s ease-out both;
+}
+
+/* Info icon hint */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .infoBox i {
+        animation: pulse 2.5s ease-in-out infinite;
+        transform-origin: center;
+    }
+}
+
+/* Card hover polish */
+.projectCard, .introCard {
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.projectCard:hover, .introCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+}
+
+/* Flip easing */
+.flip-inner, .flip-card-inner {
+    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+}
+
+/* Initial state helpers (optional hooks) */
+.is-hidden-top {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+}
+
+.is-hidden-right {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+}
+
+.is-hidden-left {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+}
+
+.is-hidden-faded {
+    opacity: 0;
+}

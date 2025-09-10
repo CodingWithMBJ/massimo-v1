@@ -1,0 +1,81 @@
+{
+  "Skills": [
+    {
+      "Technical Skills": [
+        {
+          "Languages": [
+            {
+              "name": "JavaScript (Node.js)",
+              "logo": "/assets/imgs/Node.js.svg"
+            },
+            { "name": "Python", "logo": "/assets/imgs/Python.svg" },
+            { "name": "Go", "logo": "/assets/imgs/Go.svg" },
+            { "name": "Java", "logo": "/assets/imgs/Java.svg" }
+          ]
+        },
+        {
+          "Web Development Technologies": [
+            { "name": "HTML", "logo": "/assets/imgs/HTML5.svg" },
+            { "name": "CSS", "logo": "/assets/imgs/CSS3.svg" },
+            { "name": "JavaScript", "logo": "/assets/imgs/JavaScript.svg" }
+          ]
+        },
+        {
+          "Frameworks & Libraries": [
+            { "name": "React.js", "logo": "/assets/imgs/React.svg" },
+            { "name": "Next.js", "logo": "/assets/imgs/Next.js.svg" },
+            { "name": "TailwindCSS", "logo": "/assets/imgs/Tailwind CSS.svg" },
+            { "name": "Bootstrap", "logo": "/assets/imgs/Bootstrap.svg" },
+            { "name": "jQuery", "logo": "/assets/imgs/jQuery.svg" },
+            { "name": "Express.js", "logo": "/assets/imgs/Express.svg" }
+          ]
+        },
+        {
+          "Database": [
+            { "name": "SQLite", "logo": "/assets/imgs/SQLite.svg" },
+            { "name": "MySQL", "logo": "/assets/imgs/MySQL.svg" },
+            { "name": "MongoDB", "logo": "/assets/imgs/MongoDB.svg" }
+          ]
+        },
+        {
+          "Developer Tools": [
+            { "name": "VS Code", "logo": "" },
+            { "name": "Git", "logo": "/assets/imgs/Git.svg" },
+            { "name": "GitHub", "logo": "/assets/imgs/GitHub.svg" },
+            { "name": "Docker", "logo": "/assets/imgs/Docker.svg" },
+            { "name": "Postman", "logo": "/assets/imgs/Postman.svg" }
+          ]
+        },
+        {
+          "Platforms": [
+            { "name": "Windows", "logo": "/assets/imgs/Windows 11.svg" },
+            { "name": "Linux", "logo": "/assets/imgs/Linux.svg" },
+            { "name": "Mac", "logo": "/assets/imgs/Apple.svg" },
+            { "name": "Mobile", "logo": "/assets/imgs/Android.svg" }
+          ]
+        }
+      ]
+    },
+    {
+      "Soft Skills": [
+        {
+          "name": "Problem Solver",
+          "logo": "/assets/imgs/brain-solid-full.svg"
+        },
+        {
+          "name": "Team Collaboration",
+          "logo": "/assets/imgs/brain-solid-full.svg"
+        },
+        { "name": "Adaptability", "logo": "/assets/imgs/brain-solid-full.svg" },
+        {
+          "name": "Time Management",
+          "logo": "/assets/imgs/brain-solid-full.svg"
+        },
+        {
+          "name": "Critical Thinking",
+          "logo": "/assets/imgs/brain-solid-full.svg"
+        }
+      ]
+    }
+  ]
+}

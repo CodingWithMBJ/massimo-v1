@@ -7,12 +7,135 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <link rel="stylesheet" href="/assets/css/tablet.css" />
     <link rel="stylesheet" href="/assets/css/desktop.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+
+    <script
+      src="https://kit.fontawesome.com/880dbed722.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body class="">
+  <body class="dark-theme">
     <header id="header" class="header">
       <div class="header-container">
-        <a href="#" class="logo-link"> </a>
+        <a href="#" class="logo-link">M</a>
+
+        <button id="themeBtn" class="themeBtn">
+          <span id="themeIndicator" class="themeIndicator"></span>
+        </button>
       </div>
     </header>
+    <nav id="nav" class="nav"><ul id="nav-ul" class="nav-ul"></ul></nav>
+
+    <main id="main" class="main">
+      <section id="hero" class="hero">
+        <article class="hero-container">
+          <section class="hero-avatar-container">
+            <article class="avatar"></article>
+          </section>
+          <section class="hero-intro">
+            <h3 class="myName">Mohamed Jalloh</h3>
+            <h1 class="myTitle">Full-Stack Web Developer</h1>
+          </section>
+          <section class="hero-description">
+            <p class="hero-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est
+              maxime et voluptate vel in? Modi dolores non autem? Error
+              accusantium voluptatibus enim, harum veniam quam! Repudiandae
+              cumque suscipit reiciendis dolores.
+            </p>
+          </section>
+        </article>
+        <article class="contactMe">
+          <a href="" class="myProjects"><i class="fa-solid fa-code"></i> </a
+          ><a href="" class="hireMe"><i class="fa-solid fa-handshake"></i></a>
+        </article>
+      </section>
+      <section id="about" class="about">
+        <article class="about-container">
+          <section class="about-avatar"></section>
+          <section class="about-who">
+            <h3 class="about-who-title">Who?</h3>
+            <article class="about-text">
+              <p>
+                I am <strong>Mohamed Jalloh</strong>, a
+                <strong>self-taught Full-Stack Developer</strong> with a strong
+                foundation in both frontend and backend development. I enjoy
+                building responsive, user-friendly interfaces using
+                <strong>HTML, CSS, JavaScript, React.js, and Next.js</strong>,
+                while also developing robust backend solutions with
+                <strong>Node.js, Express.js, and MongoDB</strong>.
+              </p>
+              <p>
+                My journey as a developer has been fueled by curiosity and
+                dedication, gaining practical knowledge from
+                <a href="https://coursecareers.com/"
+                  ><span class="xox">CourseCareer</span></a
+                >
+                and
+                <a href="https://www.coursera.org/"
+                  ><span class="xox">Coursera</span></a
+                >, and applying it through hands-on projects that reflect
+                real-world software development practices.
+              </p>
+              <p>
+                Passionate about continuous learning and problem-solving, I
+                strive to deliver efficient, impactful solutions and contribute
+                effectively in collaborative team environments.
+              </p>
+            </article>
+          </section>
+          <section class="about-why">
+            <h3 class="about-why-title">Why?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Excepturi, et? Nisi dolor placeat quibusdam? Quam a aspernatur
+              pariatur vel rem alias quisquam autem error! Ab tenetur aliquid
+              rerum eos sequi.
+            </p>
+          </section>
+          <section class="about-xtra">
+            <article class="about-where">
+              <h3 class="about-where-title">Where?</h3>
+              <section id="companyTabs" class="companyTabs"></section>
+              <section id="jobPanel" class="jobPanel"></section>
+            </article>
+            <article class="about-what">
+              <h3 class="about-what-title">What?</h3>
+              <section id="skillsContainer" class="skillsContainer"></section>
+            </article>
+          </section>
+        </article>
+      </section>
+      <section id="projects" class="projects">
+        <h3 class="section-title">Projects</h3>
+        <article
+          id="project-card-container"
+          class="project-cards"
+          data-max="0"
+        ></article>
+      </section>
+      <section id="contact" class="contact">
+        <article class="sectionContainer">
+          <h2 class="sectionTitle">Get In Touch</h2>
+          <section class="contactCard">
+            <p class="contactLead">Let’s build something great.</p>
+            <p class="contactCopy">
+              I’m open to freelance, internships, or full-time opportunities. If
+              you have a project or just want to say hi, my inbox is open.
+            </p>
+            <a
+              id="contactBtn"
+              class="contactBtn"
+              href="mailto:mohamed.jalloh91@gmail.com"
+              >Say Hello</a
+            >
+          </section>
+        </article>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <p>Mohamed Jalloh &copy; 2025. All rights reserved.</p>
+    </footer>
+    <script src="/assets/js/script.js"></script>
   </body>
 </html>

@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "name": "Plan Ahead App",
+      "description": "An ordering portal built for a former employer to coordinate store needs with DSPs. Features include store/admin login, item selection, checkout, and an email receipt system using Resend.com API. UI developed with Next.js for a responsive and intuitive experience.",
+      "techStack": ["React.js", "Next.js", "API", "Resend.com"],
+      "image": "/assets/imgs/plan-ahead-app.png",
+      "liveLink": "https://plan-ahead-app.vercel.app/",
+      "sourceCode": "https://github.com/OneCode-AA/plan-ahead-app"
+    },
+    {
+      "name": "M.A.J General Maintenance Landing Page",
+      "description": "A landing page for M.A.J General Maintenance LLC, including hero, services, testimonials, and contact sections. Integrated an emailing API that sends messages to the owner when a visitor submits the contact form.",
+      "techStack": ["HTML", "CSS", "JavaScript", "Email API"],
+      "image": "/assets/imgs/maj-official.png",
+      "liveLink": "https://maj-official.vercel.app/",
+      "sourceCode": "https://github.com/OneCode-AA/maj-v2"
+    },
+
+    {
+      "name": "ToDo App",
+      "description": "Created a nice UI todo app which lets you add and remove tasks",
+      "techStack": ["React.js", "Next.js", "TailwindCSS"],
+      "image": "/assets/imgs/todo-app-2k25.png",
+      "liveLink": "https://todo-app-2k25.vercel.app/",
+      "sourceCode": "https://github.com/OneCode-AA/todo-app-2k25"
+    }
+  ]
+}
