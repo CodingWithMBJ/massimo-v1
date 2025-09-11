@@ -6,117 +6,19 @@
     }
 }
 
-/* NAV / MENU panels */
-@keyframes navSlideDown {
+
+
+@keyframes fadeDown {
     from {
-        transform: translate3d(0, -100%, 0);
         opacity: 0;
+        transform: translateY(-50px);
     }
 
     to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-}
-
-@keyframes actionNavSlide {
-    from {
-        transform: translate3d(100%, 0, 0);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-}
-
-@keyframes actionMenuSlideIn {
-    from {
-        transform: translate3d(-100%, 0, 0);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-}
-
-/* Optional hooks */
-/* .nav.opened {
-    animation: navSlideDown 500ms cubic-bezier(.4, .2, .2, 1) both;
-} */
-
-.nav-panel.from-right.opened {
-    animation: actionNavSlide 450ms cubic-bezier(.4, .2, .2, 1) both;
-}
-
-.nav-panel.from-left.opened {
-    animation: actionMenuSlideIn 450ms cubic-bezier(.4, .2, .2, 1) both;
-}
-
-/* HAMBURGER keyframes (used by .menuBtn.opened in style.css) */
-@keyframes first {
-    from {
-        transform: translate3d(50px, 50px, 0) rotate(45deg);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0) rotate(45deg);
-        opacity: 1;
-    }
-}
-
-@keyframes second {
-    from {
-        transform: scaleX(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scaleX(0);
-        opacity: 0;
-    }
-}
-
-@keyframes third {
-    from {
-        transform: translate3d(50px, -50px, 0) rotate(-45deg);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0) rotate(-45deg);
-        opacity: 1;
-    }
-}
-
-/* Reveal-on-scroll (used by scroll-animations.js) */
-@media (prefers-reduced-motion: no-preference) {
-    .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    .reveal.in-view {
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 600ms ease, transform 600ms ease;
     }
 
-    .reveal[data-reveal-delay="1"] {
-        transition-delay: 80ms;
-    }
-
-    .reveal[data-reveal-delay="2"] {
-        transition-delay: 160ms;
-    }
-
-    .reveal[data-reveal-delay="3"] {
-        transition-delay: 240ms;
-    }
 }
 
 /* Subtle hero entrance */
@@ -132,7 +34,7 @@
     }
 }
 
-.hero .introCard {
+.hero {
     animation: fadeSlideUp 0.6s ease-out both;
 }
 
@@ -162,11 +64,11 @@
 }
 
 /* Card hover polish */
-.projectCard, .introCard {
+.projectCard, .hero {
     transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.projectCard:hover, .introCard:hover {
+.projectCard:hover, .avatar:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
 }

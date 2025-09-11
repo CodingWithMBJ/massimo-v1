@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Massimo v1</title>
+
+    <!-- Base CSS -->
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <link rel="stylesheet" href="/assets/css/tablet.css" />
     <link rel="stylesheet" href="/assets/css/desktop.css" />
     <link rel="stylesheet" href="/assets/css/animations.css" />
 
+    <!-- Icons -->
     <script
       src="https://kit.fontawesome.com/880dbed722.js"
       crossorigin="anonymous"
@@ -17,20 +20,30 @@
   <body class="dark-theme">
     <header id="header" class="header">
       <div class="header-container">
-        <a href="#" class="logo-link">M</a>
+        <a href="#hero" class="logo-link" aria-label="Home">M</a>
 
-        <button id="themeBtn" class="themeBtn">
+        <button id="themeBtn" class="themeBtn" aria-label="Toggle theme">
           <span id="themeIndicator" class="themeIndicator"></span>
         </button>
       </div>
     </header>
-    <nav id="nav" class="nav"><ul id="nav-ul" class="nav-ul"></ul></nav>
+
+    <!-- Bottom, pill nav -->
+    <nav id="nav" class="nav" aria-label="Primary">
+      <ul id="nav-ul" class="nav-ul"></ul>
+    </nav>
 
     <main id="main" class="main">
       <section id="hero" class="hero">
         <article class="hero-container">
           <section class="hero-avatar-container">
-            <article class="avatar"></article>
+            <article class="avatar-container" aria-hidden="true">
+              <img
+                src="/assets/imgs/man-smiling.png"
+                alt="man smiling"
+                class="avatar"
+              />
+            </article>
           </section>
           <section class="hero-intro">
             <h3 class="myName">Mohamed Jalloh</h3>
@@ -38,21 +51,26 @@
           </section>
           <section class="hero-description">
             <p class="hero-text">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est
-              maxime et voluptate vel in? Modi dolores non autem? Error
-              accusantium voluptatibus enim, harum veniam quam! Repudiandae
-              cumque suscipit reiciendis dolores.
+              Builing solutions for the seekers! Welcome!!
             </p>
           </section>
         </article>
+
         <article class="contactMe">
-          <a href="" class="myProjects"><i class="fa-solid fa-code"></i> </a
-          ><a href="" class="hireMe"><i class="fa-solid fa-handshake"></i></a>
+          <a href="#projects" class="myProjects" aria-label="View projects">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+          </a>
+          <a href="#contact" class="hireMe" aria-label="Hire me">
+            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+          </a>
         </article>
       </section>
+
       <section id="about" class="about">
+        <h1 class="about-title">About Me</h1>
         <article class="about-container">
-          <section class="about-avatar"></section>
+          <section class="about-avatar" aria-hidden="true"></section>
+
           <section class="about-who">
             <h3 class="about-who-title">Who?</h3>
             <article class="about-text">
@@ -84,36 +102,61 @@
               </p>
             </article>
           </section>
+
           <section class="about-why">
             <h3 class="about-why-title">Why?</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Excepturi, et? Nisi dolor placeat quibusdam? Quam a aspernatur
-              pariatur vel rem alias quisquam autem error! Ab tenetur aliquid
-              rerum eos sequi.
-            </p>
+            <article class="why-text">
+              <h4>You should hire me because..</h4>
+              <p>
+                I bring creativity and results, I am known to be somebody who is
+                a fast learner and somebody know has a perspective that brings
+                about another angle to the bigger picture
+              </p>
+            </article>
           </section>
+
           <section class="about-xtra">
             <article class="about-where">
               <h3 class="about-where-title">Where?</h3>
-              <section id="companyTabs" class="companyTabs"></section>
-              <section id="jobPanel" class="jobPanel"></section>
+              <section class="jobs-container">
+                <article
+                  id="companyTabs"
+                  class="companyTabs"
+                  role="tablist"
+                  aria-label="Companies"
+                ></article>
+                <article
+                  id="jobPanel"
+                  class="jobPanel"
+                  role="tabpanel"
+                  tabindex="0"
+                ></article>
+              </section>
             </article>
+
             <article class="about-what">
               <h3 class="about-what-title">What?</h3>
+              <!-- Skills render here -->
               <section id="skillsContainer" class="skillsContainer"></section>
             </article>
           </section>
         </article>
       </section>
+
       <section id="projects" class="projects">
-        <h3 class="section-title">Projects</h3>
+        <h1 class="section-title">Projects</h1>
         <article
           id="project-card-container"
           class="project-cards"
           data-max="0"
         ></article>
       </section>
+
+      <section id="blog" class="blog">
+        <h1 class="section-title">My Blog</h1>
+        <p>Coming Soon...</p>
+      </section>
+
       <section id="contact" class="contact">
         <article class="sectionContainer">
           <h2 class="sectionTitle">Get In Touch</h2>
@@ -131,11 +174,16 @@
             >
           </section>
         </article>
+
+        <!-- Socials populated by script.js -->
+        <ul id="social-ul" class="social-ul" aria-label="Social links"></ul>
       </section>
     </main>
+
     <footer id="footer" class="footer">
       <p>Mohamed Jalloh &copy; 2025. All rights reserved.</p>
     </footer>
-    <script src="/assets/js/script.js"></script>
+
+    <script src="/assets/js/script.js" defer></script>
   </body>
 </html>

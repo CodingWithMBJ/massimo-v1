@@ -1,7 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Audiowide&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bruno+Ace+SC&family=Inconsolata:wght@200..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playpen+Sans+Arabic:wght@100..800&family=Playwrite+MX+Guides&family=Quicksand:wght@300..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira+Stencil+One&family=Smooch+Sans:wght@100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Tourney:ital,wght@0,100..900;1,100..900&family=Zen+Dots&display=swap');
 
-
 :root {
     --logo-brand-color: #3b82f6;
     --logo-brand-color-dark: #2563eb;
@@ -15,7 +14,6 @@
     --ease-slow: 750ms ease-in-out;
 }
 
-
 body.dark-theme {
     --bg-primary: #0c0a09;
     --bg-secondary: #1c1917;
@@ -24,7 +22,6 @@ body.dark-theme {
     --text-secondary: #f6f5f5;
     --text-tertiary: #f2f2f2;
 }
-
 
 body.light-theme {
     --bg-primary: #ffffff;
@@ -35,12 +32,12 @@ body.light-theme {
     --text-tertiary: #000000;
 }
 
-
 html {
     min-height: 100vh;
     max-width: 100vw;
     box-sizing: border-box;
     font-size: 97%;
+    scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -78,6 +75,7 @@ button {
     cursor: pointer;
 }
 
+/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -100,16 +98,14 @@ button {
     width: 100%;
     height: 100%;
     margin: auto;
-
-
 }
-
 
 .logo-link {
     width: fit-content;
     display: none;
 }
 
+/* Nav (bottom pill) */
 .nav {
     position: fixed;
     bottom: 1vh;
@@ -126,7 +122,6 @@ button {
     border-radius: 4rem;
     box-shadow: 1px 1px 2px 2px var(--bg-secondary);
     z-index: 20;
-
 }
 
 .nav-ul {
@@ -136,41 +131,48 @@ button {
     width: 100%;
     min-height: fit-content;
     margin: auto;
-
-
 }
 
 .nav-li {
     display: block;
-
 }
 
 .nav-li-a {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
     padding: 10px 1em;
     border-radius: 2rem;
-
+    position: relative;
 
 }
 
-.nav-li:hover .nav-li-a i {
-
-    color: var(--text-primary);
-}
-
+/* Inactive/active icon colors */
 .nav-li-a i {
     color: var(--bg-tertiary);
     font-size: clamp(1em, 1.5em, 2em);
+}
 
-
-
+.nav-li-a.active i {
+    color: var(--text-primary);
 }
 
 .link-name {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 500ms ease-in-out;
 }
 
+.nav-li:hover .link-name {
+    opacity: 1;
+    top: -40px;
+}
 
+/* Theme toggle */
 .themeBtn {
     display: flex;
     padding: 4px 3px;
@@ -204,6 +206,7 @@ button {
     background: var(--bg-primary);
 }
 
+/* Layout */
 .main {
     min-height: 100vh;
     width: clamp(400px, 100%, 700px);
@@ -214,6 +217,8 @@ button {
     gap: 2rem;
     padding-inline: 10px;
 }
+
+
 
 .hero {
     display: flex;
@@ -234,6 +239,13 @@ button {
     height: 100%;
     padding: 1em;
     text-align: center;
+    gap: 1rem;
+}
+
+.avatar {
+    position: relative;
+    height: clamp(270px, 300px, 400px);
+    animation: fadeDown 500ms ease-in-out;
 }
 
 
@@ -245,7 +257,7 @@ button {
 }
 
 .contactMe a {
-    padding: 1em 3em;
+    padding: 0.5em 2.5em;
     background: var(--text-secondary);
     border-radius: 2rem;
 }
@@ -255,9 +267,30 @@ button {
     font-size: 2rem;
 }
 
+.contactMe a:hover {
+
+    background: var(--bg-secondary);
+
+}
+
+.contactMe a:hover i {
+    color: var(--text-primary);
+
+}
+
+
+
+/* About */
 .about {
     min-height: 100vh;
     margin-top: 5rem;
+    width: 100%;
+}
+
+.about-title, .section-title {
+    text-align: center;
+    text-decoration: underline;
+
 }
 
 .about-container {
@@ -265,8 +298,8 @@ button {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
-
+    gap: 4rem;
+    width: 100%;
 }
 
 .about-who, .about-why, .about-where {
@@ -278,25 +311,43 @@ button {
 
 }
 
+.about-who>h3, .about-why>h3, .about-where>h3, .about-what>h3 {
+    font-size: 1.7em;
+}
+
 .about-xtra {
     min-height: 100vh;
 }
 
 
-
-
-.company-tabs li+li {
-    margin-top: .25rem;
-}
-
-.company-tab {
+.jobs-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Company tabs (IDs aligned) */
+#companyTabs li+li {
+    margin-top: .25rem;
+}
+
+
+.companyTabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+#companyTabs .company-tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin: auto;
     width: 100%;
-    min-width: 90vw;
     text-align: center;
     padding: .6rem .8rem;
     border: 0;
@@ -309,38 +360,36 @@ button {
     opacity: .3;
 }
 
-.company-tab:hover {
+
+#companyTabs .company-tab:hover {
     background: color-mix(in srgb, var(--bg-tertiary) 40%, transparent);
 }
 
-.company-tab.active {
+#companyTabs .company-tab.active {
     background: var(--bg-tertiary);
     border-left: 3px solid var(--logo-brand-color);
     border-right: 3px solid var(--logo-brand-color);
     opacity: 1;
 }
 
-.job-panel {
+/* Job panel (ID aligned) */
+#jobPanel {
     border: 1px solid var(--border-color);
     border-radius: .75rem;
     padding: 1rem;
     background: var(--bg-secondary);
     width: 100%;
-    /* text-align: center; */
-
 }
 
 .job-header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
     padding: 2em 0 0;
 }
 
 .job-title {
     font-size: 1.1rem;
-
     margin: 0 0 .25rem 0;
 }
 
@@ -358,7 +407,6 @@ button {
 .task-list {
     margin: .75rem 0 0;
     padding-left: 1.25rem;
-
 }
 
 .task-item {
@@ -367,6 +415,7 @@ button {
     list-style-type: square;
 }
 
+/* Skills */
 .about-what {
     display: flex;
     flex-direction: column;
@@ -374,6 +423,7 @@ button {
     margin-top: 3rem;
     gap: 1em;
     padding-block: 2rem;
+    text-align: center;
 }
 
 .skillsContainer {
@@ -381,11 +431,30 @@ button {
     flex-direction: column;
     gap: 0.2rem;
     padding: 0 0 2rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.skillCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    padding-block: 1em;
+}
+
+.sub-skillCard {
+    border: 1px solid var(--text-primary);
+    width: 100%;
+    padding: 10px;
+    border-radius: 1em;
 }
 
 
 .skillsContainer h2 {
-
     border-bottom: 2px dotted var(--text-primary);
     padding: 2px 2rem;
     border-radius: 1em;
@@ -393,7 +462,6 @@ button {
     background: var(--text-primary);
     color: var(--bg-primary);
     display: block;
-
 
 }
 
@@ -405,57 +473,103 @@ button {
     margin-top: 1em;
     text-decoration: 2px underline;
     padding: 2px;
-
 }
 
 .skillsContainer ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 1em;
     margin-top: 1em;
+
 }
 
-.skillsContainer ul li {
-    padding: 5px 10px;
+/* === Skills section (logos + chips) === */
+.skill-group {
+    border-bottom: 2px dotted var(--text-primary);
+    padding: 2px 2rem;
+    border-radius: 1em;
+    width: fit-content;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    display: block;
+    margin-top: 1rem;
+}
+
+.skill-subheading {
+    margin-top: 1em;
+    text-decoration: 2px underline;
+    padding: 2px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.skill-chip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px;
     background: var(--bg-secondary);
     border-radius: 2rem;
+    border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+    cursor: pointer;
 }
 
-.skillsContainer ul li:hover {
+.skill-chip:hover {
     background: var(--text-secondary);
     color: var(--bg-primary);
+}
 
+
+.skill-chip i.fa-brands {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.skill-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+
+
+}
+
+.skill-name {
+    line-height: 1;
+    font-size: 0.95rem;
+    display: none;
+}
+
+/* THEME-SAFE ICON via CSS MASK (Simple Icons) */
+.si-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask: var(--si) no-repeat center / contain;
+    mask: var(--si) no-repeat center / contain;
+}
+
+/* Projects */
+.projects {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .projectsContainer {
     display: grid;
     gap: 1.25rem;
-}
-
-.project-tab {
-    width: 100%;
-    text-align: left;
-    padding: .6rem .8rem;
-    border: 0;
-    border-radius: .5rem;
-    background: transparent;
-    cursor: pointer;
-    font: inherit;
-    color: var(--text-primary);
-    outline-offset: 2px;
-    display: none;
-}
-
-.project-tab:hover {
-    background: color-mix(in srgb, var(--bg-tertiary) 40%, transparent);
-}
-
-.project-tab.active {
-    background: var(--bg-tertiary);
-    border-left: 3px solid var(--logo-brand-color);
-    border-right: 3px solid var(--logo-brand-color);
 }
 
 .projectCard {
@@ -484,7 +598,6 @@ button {
     flex-wrap: wrap;
     padding: 2rem 0;
     justify-content: center;
-
 }
 
 .tech-list li {
@@ -493,9 +606,6 @@ button {
     border-radius: 2rem;
     background: var(--text-primary);
     color: var(--bg-primary);
-
-
-
 }
 
 .links-flex {
@@ -513,26 +623,21 @@ button {
     color: var(--text-primary);
 }
 
-
-
 .links-flex button {
     border: none;
     background: none;
 }
 
+/* Flip */
 .flip, .flip-card {
     position: relative;
     width: 100%;
     perspective: 1000px;
 }
 
-
 .flip-inner {
-
     min-height: 260px;
-    /* default */
 }
-
 
 .flip-inner, .flip-card .flip-card-inner {
     position: relative;
@@ -541,18 +646,11 @@ button {
     border-radius: 1rem;
     overflow: visible;
     transform: rotateY(0deg);
-    /* default */
 }
 
 .flip-card .flip-card-inner {
-
     min-height: fit-content;
-    /* default */
 }
-
-/* .hero :is(.flip-inner, .flip-card .flip-card-inner) {
-    min-height: 300px;
-} */
 
 .flip-inner.flipped, .flip-card-inner.flipped {
     transform: rotateY(180deg);
@@ -568,19 +666,15 @@ button {
     inset: 0;
 }
 
-
 .flip-front, .flip-card-front {
     transform: rotateY(0deg);
 }
 
-
 .flip-card-front {
     width: 100%;
     height: fit-content;
-
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: flex-start;
     margin-top: 4.25rem;
     padding: 16px;
@@ -590,38 +684,26 @@ button {
 }
 
 .flip-back, .flip-card-back {
-
     transform: rotateY(180deg);
     display: flex;
     color: var(--text-primary);
-    /* margin: auto; */
     background: var(--bg-secondary);
-
 }
-
-
 
 .flip-card-back {
     min-height: 60vh;
-    color: var(--text-primary);
     margin: auto;
-    background: var(--bg-secondary);
     border-radius: 2rem;
 }
 
 .flip-back {
     min-height: max-content;
-    background: transparent;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    color: var(--text-primary);
     margin: auto;
-    background: var(--bg-secondary);
-
 }
 
-/* Disable clicks on the hidden side */
 .flip-inner:not(.flipped) .flip-back,
 .flip-card-inner:not(.flipped) .flip-card-back {
     pointer-events: none;
@@ -632,18 +714,14 @@ button {
     pointer-events: none;
 }
 
-/* Optional GPU hint */
 .flip-inner, .flip-card-inner {
     will-change: transform;
 }
 
-/* One shared hero toggle (inside #heroCard; does NOT flip) */
 #heroCard {
     position: relative;
-
 }
 
-/* ensure positioning context */
 .flipToggleBtn {
     position: absolute;
     right: 12px;
@@ -675,6 +753,15 @@ button {
     line-height: 1;
 }
 
+.blog {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contact */
 .contact {
     display: flex;
     flex-direction: column;
@@ -682,13 +769,12 @@ button {
     align-items: center;
     text-align: center;
     gap: 1em;
-    min-height: 40vh;
+    min-height: 90vh;
 }
 
 .contact .sectionContainer {
     justify-content: center;
     align-items: center;
-
 }
 
 .contactCard {
@@ -709,15 +795,46 @@ button {
 }
 
 .contactBtn:hover {
-
     background: var(--bg-primary);
     color: var(--text-primary);
     border: 1px solid var(--text-primary);
 }
 
-.footer {
+/* Socials list */
+.social-ul {
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.social-li-a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .75rem;
+    border-radius: 2rem;
+    background: var(--bg-secondary);
+}
+
+.social-li-a:hover {
+    background: var(--text-secondary);
+    color: var(--bg-primary);
+}
+
+.social-icon {
+    font-size: 1.1rem;
+}
+
+.social-text {
+    font-size: .95rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding: 1em 0;
     margin-bottom: 6rem;

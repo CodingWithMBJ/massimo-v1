@@ -6,75 +6,135 @@
           "Languages": [
             {
               "name": "JavaScript (Node.js)",
-              "logo": "/assets/imgs/Node.js.svg"
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nodedotjs.svg"
             },
-            { "name": "Python", "logo": "/assets/imgs/Python.svg" },
-            { "name": "Go", "logo": "/assets/imgs/Go.svg" },
-            { "name": "Java", "logo": "/assets/imgs/Java.svg" }
+            {
+              "name": "Python",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg"
+            },
+            {
+              "name": "Go",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/go.svg"
+            },
+            {
+              "name": "Java",
+              "logo": "fa-brands fa-java"
+            }
           ]
         },
         {
           "Web Development Technologies": [
-            { "name": "HTML", "logo": "/assets/imgs/HTML5.svg" },
-            { "name": "CSS", "logo": "/assets/imgs/CSS3.svg" },
-            { "name": "JavaScript", "logo": "/assets/imgs/JavaScript.svg" }
+            {
+              "name": "HTML",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/html5.svg"
+            },
+            {
+              "name": "CSS",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/css3.svg"
+            },
+            {
+              "name": "JavaScript",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg"
+            }
           ]
         },
         {
           "Frameworks & Libraries": [
-            { "name": "React.js", "logo": "/assets/imgs/React.svg" },
-            { "name": "Next.js", "logo": "/assets/imgs/Next.js.svg" },
-            { "name": "TailwindCSS", "logo": "/assets/imgs/Tailwind CSS.svg" },
-            { "name": "Bootstrap", "logo": "/assets/imgs/Bootstrap.svg" },
-            { "name": "jQuery", "logo": "/assets/imgs/jQuery.svg" },
-            { "name": "Express.js", "logo": "/assets/imgs/Express.svg" }
+            {
+              "name": "React.js",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/react.svg"
+            },
+            {
+              "name": "Next.js",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nextdotjs.svg"
+            },
+            {
+              "name": "TailwindCSS",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tailwindcss.svg"
+            },
+            {
+              "name": "Bootstrap",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/bootstrap.svg"
+            },
+            {
+              "name": "jQuery",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/jquery.svg"
+            },
+            {
+              "name": "Express.js",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/express.svg"
+            }
           ]
         },
         {
           "Database": [
-            { "name": "SQLite", "logo": "/assets/imgs/SQLite.svg" },
-            { "name": "MySQL", "logo": "/assets/imgs/MySQL.svg" },
-            { "name": "MongoDB", "logo": "/assets/imgs/MongoDB.svg" }
+            {
+              "name": "SQLite",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/sqlite.svg"
+            },
+            {
+              "name": "MySQL",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mysql.svg"
+            },
+            {
+              "name": "MongoDB",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mongodb.svg"
+            }
           ]
         },
         {
           "Developer Tools": [
-            { "name": "VS Code", "logo": "" },
-            { "name": "Git", "logo": "/assets/imgs/Git.svg" },
-            { "name": "GitHub", "logo": "/assets/imgs/GitHub.svg" },
-            { "name": "Docker", "logo": "/assets/imgs/Docker.svg" },
-            { "name": "Postman", "logo": "/assets/imgs/Postman.svg" }
+            {
+              "name": "VS Code",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visualstudiocode.svg"
+            },
+            {
+              "name": "Git",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/git.svg"
+            },
+            {
+              "name": "GitHub",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"
+            },
+            {
+              "name": "Docker",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/docker.svg"
+            },
+            {
+              "name": "Postman",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/postman.svg"
+            }
           ]
         },
         {
           "Platforms": [
-            { "name": "Windows", "logo": "/assets/imgs/Windows 11.svg" },
-            { "name": "Linux", "logo": "/assets/imgs/Linux.svg" },
-            { "name": "Mac", "logo": "/assets/imgs/Apple.svg" },
-            { "name": "Mobile", "logo": "/assets/imgs/Android.svg" }
+            {
+              "name": "Windows",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/windows.svg"
+            },
+            {
+              "name": "Linux",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linux.svg"
+            },
+            {
+              "name": "Mac",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg"
+            },
+            {
+              "name": "Mobile",
+              "mask": "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/android.svg"
+            }
           ]
         }
       ]
     },
     {
       "Soft Skills": [
-        {
-          "name": "Problem Solver",
-          "logo": "/assets/imgs/brain-solid-full.svg"
-        },
-        {
-          "name": "Team Collaboration",
-          "logo": "/assets/imgs/brain-solid-full.svg"
-        },
-        { "name": "Adaptability", "logo": "/assets/imgs/brain-solid-full.svg" },
-        {
-          "name": "Time Management",
-          "logo": "/assets/imgs/brain-solid-full.svg"
-        },
-        {
-          "name": "Critical Thinking",
-          "logo": "/assets/imgs/brain-solid-full.svg"
-        }
+        { "name": "Problem Solver", "logo": "fa-solid fa-lightbulb" },
+        { "name": "Team Collaboration", "logo": "fa-solid fa-people-group" },
+        { "name": "Adaptability", "logo": "fa-solid fa-arrows-rotate" },
+        { "name": "Time Management", "logo": "fa-solid fa-clock" },
+        { "name": "Critical Thinking", "logo": "fa-solid fa-brain" }
       ]
     }
   ]

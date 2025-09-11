@@ -1,5 +1,6 @@
+// ---------- Utils ----------
 function escapeHTML(str) {
-  return String(str)
+  return String(str ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -9,125 +10,170 @@ function escapeHTML(str) {
 
 window.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const main = document.getElementById("main");
   const header = document.getElementById("header");
-  const headerContainer = document.querySelector(".header-container");
   const nav = document.getElementById("nav");
 
-  //   let lastY = window.scrollY;
-  //   let scrollTimeout;
-  //   window.addEventListener("scroll", () => {
-  //     const y = window.scrollY;
-
-  //     if (y < lastY && y >= 100) {
-  //       header.classList.add("scrollingUp");
-  //       clearTimeout(scrollTimeout);
-  //       scrollTimeout = setTimeout(
-  //         () => header.classList.remove("scrollingUp"),
-  //         3000
-  //       );
-  //     } else {
-  //       header.classList.remove("scrollingUp");
-  //     }
-
-  //     if (y >= 100) header.classList.add("active");
-  //     else header.classList.remove("active");
-
-  //     lastY = y;
-  //   });
-
+  // ---------- Theme ----------
   const themeButton = document.getElementById("themeBtn");
   const themeIndicator = document.getElementById("themeIndicator");
 
-  body.classList.add("dark-theme");
-  themeIndicator.classList.add("night");
+  const savedTheme = localStorage.getItem("theme");
+  const savedTod = localStorage.getItem("tod");
 
-  themeButton.addEventListener("click", () => {
-    const dark = body.classList.contains("dark-theme");
-    body.classList.toggle("dark-theme", !dark);
-    body.classList.toggle("light-theme", dark);
+  body.classList.toggle("light-theme", savedTheme === "light-theme");
+  body.classList.toggle("dark-theme", savedTheme !== "light-theme");
 
-    const night = themeIndicator.classList.contains("night");
-    themeIndicator.classList.toggle("night", !night);
-    themeIndicator.classList.toggle("day", night);
+  themeIndicator?.classList.toggle("day", savedTod === "day");
+  themeIndicator?.classList.toggle("night", savedTod !== "day");
 
-    localStorage.setItem("theme", dark ? "light-theme" : "dark-theme");
-    localStorage.setItem("tod", night ? "day" : "night");
+  themeButton?.addEventListener("click", () => {
+    const isDark = body.classList.contains("dark-theme");
+    body.classList.toggle("dark-theme", !isDark);
+    body.classList.toggle("light-theme", isDark);
+
+    const isNight = themeIndicator?.classList.contains("night") ?? true;
+    themeIndicator?.classList.toggle("night", !isNight);
+    themeIndicator?.classList.toggle("day", isNight);
+
+    localStorage.setItem("theme", isDark ? "light-theme" : "dark-theme");
+    localStorage.setItem("tod", isNight ? "day" : "night");
   });
 
-  //   menuBtn.addEventListener("click", () => {
-  //     const isOpened = menuBtn.classList.contains("opened");
-  //     menuBtn.classList.toggle("opened", !isOpened);
-  //     nav.classList.toggle("opened", !isOpened);
-  //     menuBtn.setAttribute("aria-expanded", String(!isOpened));
-  //   });
-
+  // ---------- Navigation & Socials ----------
   fetch("/assets/data/navLinks.json")
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP error: ${r.status}`);
       return r.json();
     })
     .then((data) => {
-      const navLinks = data?.Links?.[0]?.navLinks ?? [];
-      const socialLinks = data?.Links?.[1]?.socialLinks ?? [];
+      const navLinks = data?.navLinks ?? data?.Links?.[0]?.navLinks ?? [];
+      const socialLinks =
+        data?.socialLinks ?? data?.Links?.[1]?.socialLinks ?? [];
 
       const navUl = document.getElementById("nav-ul");
+      const socialUl =
+        document.getElementById("social-ul") ||
+        document.querySelector(".social-bio .social-ul");
 
-      // nav
-      navLinks.forEach((link) => {
-        const li = document.createElement("li");
-        li.className = "nav-li";
+      // Build Nav
+      if (navUl) {
+        navUl.innerHTML = "";
+        const frag = document.createDocumentFragment();
+        navLinks.forEach(({ name, href, icon }) => {
+          const li = document.createElement("li");
+          li.className = "nav-li";
 
-        const a = document.createElement("a");
-        a.className = "nav-li-a";
-        a.href = link.href;
+          const a = document.createElement("a");
+          a.className = "nav-li-a";
+          a.href = href;
 
-        const span = document.createElement("span");
-        span.className = "link-name";
-        span.textContent = link.name;
+          if (icon) {
+            const i = document.createElement("i");
+            i.className = icon;
+            a.appendChild(i);
+          }
 
-        if (link.icon) {
-          const icon = document.createElement("i");
-          icon.className = link.icon;
-          a.appendChild(icon);
-        }
+          const span = document.createElement("span");
+          span.className = "link-name";
+          span.textContent = name;
 
-        a.appendChild(span);
-        li.appendChild(a);
-        navUl.appendChild(li);
-      });
-
-      navUl.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", () => {
-          nav.classList.remove("opened");
-          menuBtn.classList.remove("opened");
-          menuBtn.setAttribute("aria-expanded", "false");
+          a.appendChild(span);
+          li.appendChild(a);
+          frag.appendChild(li);
         });
-      });
+        navUl.appendChild(frag);
 
-      socialLinks.forEach((link) => {
-        const li = document.createElement("li");
-        li.className = "social-li";
+        // Close mobile menu on click
+        navUl.addEventListener("click", (e) => {
+          const anchor = e.target.closest("a");
+          if (!anchor) return;
+          nav?.classList.remove("opened");
+          const menuBtn = document.getElementById("menuBtn");
+          if (menuBtn) {
+            menuBtn.classList.remove("opened");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+          // If anchor is a hash link, set active immediately for mobile UX
+          if (anchor.hash) {
+            navUl
+              .querySelectorAll(".nav-li-a.active")
+              .forEach((el) => el.classList.remove("active"));
+            anchor.classList.add("active");
+          }
+        });
 
-        const a = document.createElement("a");
-        a.className = "social-li-a";
-        a.href = link.href;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
+        // Active-link highlight via IntersectionObserver
+        const sections = navLinks
+          .map(({ href }) =>
+            typeof href === "string" && href.startsWith("#")
+              ? document.querySelector(href)
+              : null
+          )
+          .filter(Boolean);
 
-        const icon = document.createElement("i");
-        if (link.icon) icon.className = `${link.icon} social-icon`;
+        if (sections.length) {
+          const obs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                const id = entry.target.id;
+                const link = navUl.querySelector(`a[href="#${id}"]`);
+                if (!link) return;
+                if (entry.isIntersecting) {
+                  navUl
+                    .querySelectorAll(".nav-li-a.active")
+                    .forEach((el) => el.classList.remove("active"));
+                  link.classList.add("active");
+                }
+              });
+            },
+            { root: null, rootMargin: "0px", threshold: 0.5 }
+          );
+          sections.forEach((sec) => obs.observe(sec));
 
-        const span = document.createElement("span");
-        span.className = "social-text";
-        span.textContent = link.name;
+          // Also set active based on current hash on load
+          if (location.hash) {
+            const current = navUl.querySelector(
+              `a[href="${CSS.escape(location.hash)}"]`
+            );
+            current?.classList.add("active");
+          }
+        }
+      }
 
-        a.append(icon, span);
-        li.appendChild(a);
-      });
+      // Build Socials
+      if (socialUl) {
+        socialUl.innerHTML = "";
+        const frag = document.createDocumentFragment();
+        socialLinks.forEach(({ name, href, icon }) => {
+          const li = document.createElement("li");
+          li.className = "social-li";
+
+          const a = document.createElement("a");
+          a.className = "social-li-a";
+          a.href = href;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+
+          if (icon) {
+            const i = document.createElement("i");
+            i.className = `${icon} social-icon`;
+            a.appendChild(i);
+          }
+
+          const span = document.createElement("span");
+          span.className = "social-text";
+          span.textContent = name;
+
+          a.append(span);
+          li.appendChild(a);
+          frag.appendChild(li);
+        });
+        socialUl.appendChild(frag);
+      }
     })
     .catch((err) => console.error("Nav fetch error:", err));
 
+  // ---------- Experience ----------
   fetch("/assets/data/experiences.json")
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP error: ${r.status}`);
@@ -139,6 +185,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const tabsUl = document.getElementById("companyTabs");
       const panel = document.getElementById("jobPanel");
+      if (!tabsUl || !panel) return;
+
+      tabsUl.innerHTML = "";
+      const tabsFrag = document.createDocumentFragment();
 
       jobs.forEach((job, idx) => {
         const li = document.createElement("li");
@@ -147,15 +197,19 @@ window.addEventListener("DOMContentLoaded", () => {
         btn.className = "company-tab" + (idx === 0 ? " active" : "");
         btn.setAttribute("role", "tab");
         btn.setAttribute("aria-selected", idx === 0 ? "true" : "false");
-        btn.setAttribute("data-index", String(idx));
+        btn.id = `company-tab-${idx}`;
         btn.textContent =
           job.companyAlias || job.company || `Company ${idx + 1}`;
         btn.addEventListener("click", () => selectJob(idx));
         li.appendChild(btn);
-        tabsUl.appendChild(li);
+        tabsFrag.appendChild(li);
       });
 
-      function renderJob(job) {
+      tabsUl.appendChild(tabsFrag);
+      tabsUl.setAttribute("role", "tablist");
+      panel.setAttribute("role", "tabpanel");
+
+      function renderJob(job, idx) {
         const {
           title = "",
           company = "",
@@ -171,6 +225,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const taskObject = tasks?.[0] ?? {};
         const taskList = Object.values(taskObject).filter(Boolean);
 
+        panel.setAttribute("aria-labelledby", `company-tab-${idx}`);
         panel.innerHTML = `
           <header class="job-header">
             <h3 class="job-title">${escapeHTML(title)} <span class="at">@</span>
@@ -204,13 +259,34 @@ window.addEventListener("DOMContentLoaded", () => {
           b.classList.toggle("active", active);
           b.setAttribute("aria-selected", active ? "true" : "false");
         });
-        renderJob(jobs[index]);
+        renderJob(jobs[index], index);
       }
+
+      // optional: left/right arrow key navigation for tabs
+      tabsUl.addEventListener("keydown", (e) => {
+        const tabs = [...tabsUl.querySelectorAll(".company-tab")];
+        if (!tabs.length) return;
+        const current = document.activeElement;
+        const idx = tabs.indexOf(current);
+        if (idx < 0) return;
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          const ni = (idx + 1) % tabs.length;
+          tabs[ni].focus();
+          tabs[ni].click();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          const pi = (idx - 1 + tabs.length) % tabs.length;
+          tabs[pi].focus();
+          tabs[pi].click();
+        }
+      });
 
       selectJob(0);
     })
     .catch((err) => console.error("Experience fetch error:", err));
 
+  // ---------- Skills (theme-safe masks + FA) ----------
   fetch("/assets/data/skills.json")
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP error: ${r.status}`);
@@ -220,90 +296,131 @@ window.addEventListener("DOMContentLoaded", () => {
       const container = document.getElementById("skillsContainer");
       if (!container) return;
 
+      const groups = Array.isArray(data?.Skills) ? data.Skills : [];
+      if (!groups.length) return;
+
       container.innerHTML = "";
       const frag = document.createDocumentFragment();
 
-      // data.Skills is an array of objects like:
-      // { "Technical Skills": [ { "Languages": [...] }, { "Database": [...] }, ... ] }
-      // { "Soft Skills": [ {name: "..."} , ... ] }
-      (data?.Skills ?? []).forEach((groupObj) => {
+      // Build a single chip (supports mask, FA classes, or img)
+      const makeSkillChip = ({ name = "", logo = "", mask = "" }) => {
+        const li = document.createElement("li");
+        li.className = "skill-chip";
+
+        if (mask) {
+          const span = document.createElement("span");
+          span.className = "si-icon";
+          span.style.setProperty("--si", `url("${mask}")`);
+          span.setAttribute("role", "img");
+          span.setAttribute("aria-label", `${name} logo`);
+          li.appendChild(span);
+        } else if (
+          logo &&
+          /\bfa-(solid|regular|brands)\b|\bfa-\w+/.test(logo)
+        ) {
+          // e.g. "fa-brands fa-java"
+          const i = document.createElement("i");
+          const classes = logo.split(/\s+/);
+          if (!classes.some((c) => /fa-(solid|regular|brands)/.test(c))) {
+            classes.unshift("fa-solid");
+          }
+          i.className = classes.join(" ");
+          i.style.marginRight = "0.5rem";
+          li.appendChild(i);
+        } else if (
+          logo &&
+          (/^https?:\/\//i.test(logo) ||
+            /^[./]/.test(logo) ||
+            logo.startsWith("/"))
+        ) {
+          const img = document.createElement("img");
+          img.className = "skill-logo";
+          img.src = logo;
+          img.alt = `${name} logo`;
+          img.loading = "lazy";
+          li.appendChild(img);
+        }
+
+        const label = document.createElement("span");
+        label.className = "skill-name";
+        label.textContent = name;
+        li.appendChild(label);
+
+        return li;
+      };
+
+      // Render groups
+      groups.forEach((groupObj) => {
         const [groupName, groupVal] = Object.entries(groupObj)[0] || [];
         if (!groupName || !Array.isArray(groupVal)) return;
 
-        // Group heading (e.g., "Technical Skills", "Soft Skills")
-        const h2 = document.createElement("h2");
-        h2.textContent = groupName;
-        frag.appendChild(h2);
+        // Parent group card
+        const groupCard = document.createElement("article");
+        groupCard.className = "skillCard";
 
-        // If this group is "Soft Skills", it's a flat array of {name, logo}
-        const isSoftSkills =
+        const h2 = document.createElement("h2");
+        h2.className = "skill-heading";
+        h2.textContent = groupName;
+        groupCard.appendChild(h2);
+
+        // If it's Soft Skills (flat list)
+        const isSoft =
           groupName.toLowerCase().includes("soft") &&
           groupVal.every((it) => typeof it === "object" && "name" in it);
 
-        if (isSoftSkills) {
+        if (isSoft) {
           const ul = document.createElement("ul");
-          groupVal.forEach((skill) => {
-            const li = document.createElement("li");
-            li.textContent = skill.name;
-            ul.appendChild(li);
-          });
-          frag.appendChild(ul);
+          ul.className = "skill-list";
+          groupVal.forEach((skill) => ul.appendChild(makeSkillChip(skill)));
+          groupCard.appendChild(ul);
+          frag.appendChild(groupCard);
           return;
         }
 
-        // Otherwise, it's "Technical Skills": an array of subcategory objects
+        // Technical skills: nested subcategory cards
         groupVal.forEach((subcategoryObj) => {
-          // Example: { "Languages": [ {name: "..."} , ... ] }
-          const [subcategoryName, skillsArr] =
-            Object.entries(subcategoryObj)[0] || [];
-          if (!subcategoryName || !Array.isArray(skillsArr)) return;
+          const [subName, skillsArr] = Object.entries(subcategoryObj)[0] || [];
+          if (!subName || !Array.isArray(skillsArr)) return;
+
+          const subCard = document.createElement("section");
+          subCard.className = "skillCard sub-skillCard"; // includes .skillCard for shared styles
 
           const h3 = document.createElement("h3");
-          h3.textContent = subcategoryName;
-          frag.appendChild(h3);
+          h3.className = "skill-heading";
+          h3.textContent = subName;
+          subCard.appendChild(h3);
 
           const ul = document.createElement("ul");
-          skillsArr.forEach((skill) => {
-            if (!skill?.name) return;
-            const li = document.createElement("li");
-            li.textContent = skill.name;
-            ul.appendChild(li);
-          });
-          frag.appendChild(ul);
+          ul.className = "skill-list";
+          skillsArr.forEach((skill) => ul.appendChild(makeSkillChip(skill)));
+          subCard.appendChild(ul);
+
+          groupCard.appendChild(subCard);
         });
+
+        frag.appendChild(groupCard);
       });
 
       container.appendChild(frag);
     })
     .catch((err) => console.error("Skills fetch error:", err));
 
+  // ---------- Projects (single container) ----------
   (function projectsSingle() {
     const container =
       document.getElementById("project-card-container") ||
       document.querySelector("[data-projects]");
     if (!container) return;
 
-    // If you already define escapeHTML globally elsewhere, this won't overwrite it.
-    const escapeHTML =
-      window.escapeHTML ||
-      ((str) =>
-        String(str ?? "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;"));
-
-    // Desktop breakpoint (matches your CSS @media min-width:1024px)
     const desktopMQ = window.matchMedia("(min-width: 1024px)");
 
     function resetAllFlips(root = document) {
-      root.querySelectorAll(".flip-inner.flipped").forEach((el) => {
-        el.classList.remove("flipped");
-      });
-      root.querySelectorAll(".infoBox[aria-pressed='true']").forEach((btn) => {
-        btn.setAttribute("aria-pressed", "false");
-      });
+      root
+        .querySelectorAll(".flip-inner.flipped")
+        .forEach((el) => el.classList.remove("flipped"));
+      root
+        .querySelectorAll(".infoBox[aria-pressed='true']")
+        .forEach((btn) => btn.setAttribute("aria-pressed", "false"));
     }
 
     if (desktopMQ.matches) resetAllFlips();
@@ -324,7 +441,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const inner = card?.querySelector(".flip-inner");
         if (!inner) return;
 
-        // On desktop: never allow flip
+        // Disable flip on desktop
         if (desktopMQ.matches) {
           inner.classList.remove("flipped");
           btn.setAttribute("aria-pressed", "false");
@@ -410,7 +527,6 @@ window.addEventListener("DOMContentLoaded", () => {
         const projects = Array.isArray(data.projects) ? data.projects : [];
         if (!projects.length) return;
 
-        // Optional: limit how many cards to render via data-max on the container
         const maxAttr = parseInt(container.dataset.max || "0", 10);
         const list = maxAttr > 0 ? projects.slice(0, maxAttr) : projects;
 

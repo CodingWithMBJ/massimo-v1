@@ -1,0 +1,21 @@
+/* Tablet breakpoint overrides */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+    /* .logo-link {
+        display: inline-block;
+    } */
+
+
+    .jobs-container {
+        flex-direction: row;
+        align-items: start;
+        gap: 1em;
+    }
+
+    .companyTabs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+}
